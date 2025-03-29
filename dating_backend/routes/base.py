@@ -16,8 +16,7 @@ app = FastAPI(
     docs_url=None if __version__ != 'dev' else '/docs',
     redoc_url=None,
 )
-app.include_router(profile.router, prefix="/profiles", tags=["profiles"])
-app.include_router(comment.router, prefix="/comments", tags=["comments"])
+
 
 app.add_middleware(
     DBSessionMiddleware,
@@ -32,3 +31,6 @@ app.add_middleware(
     allow_methods=settings.CORS_ALLOW_METHODS,
     allow_headers=settings.CORS_ALLOW_HEADERS,
 )
+
+app.include_router(profile.router, prefix="/profiles", tags=["profiles"])
+app.include_router(comment.router, prefix="/comments", tags=["comments"])
